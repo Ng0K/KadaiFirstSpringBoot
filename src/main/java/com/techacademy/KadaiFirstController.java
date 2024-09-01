@@ -12,16 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class KadaiFirstController {
 
 
-    @GetMapping("dayofweek/{yyyymmdd}")
-        public String dispDayOfWeek() {
+    @GetMapping("dayofweek/{day}")
+        public String dispDayOfWeek(@PathVariable String day) {
 
             Calendar cl=Calendar.getInstance();
-            String str="yyyymmdd";
-            String yyyy=str.substring(0,4);
-            String mm=str.substring(4,6);
-            String dd=str.substring(6,7);
+            String yyyy=day.substring(0,4);
+            String mm=day.substring(4,6);
+            String dd=day.substring(6,8);
             int year=Integer.parseInt(yyyy);
-            int month=Integer.parseInt(mm);
+            int month=Integer.parseInt(mm)-1;
             int date=Integer.parseInt(dd);
             cl.set(year,month,date);
 
@@ -36,7 +35,7 @@ public class KadaiFirstController {
                 case Calendar.SATURDAY:return "SATURDAY";
 
            }
-            return "結果"+cl;
+            return "";
 
             }
 
